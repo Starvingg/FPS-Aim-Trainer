@@ -92,3 +92,6 @@
 
         window.startGame = startGame;
         window.stopGame = stopGame;
+
+
+		// Adding a note to test git commit
