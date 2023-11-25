@@ -17,22 +17,21 @@
 			// The below are the total number of columns and rows in the grid
 			const totalColumns = 50; // Defiend manually
         	const totalRows = 50; // Defined manually
-        	const gridItems = []; // This will be a 2D array of grid items
+        	const fullGrid = []; // This will be a 2D array of grid items
 
         	function getRandomNumber(max) {
         		return Math.floor(Math.random() * max);
         	}
 
-        	function initializeGrid() {
-				// This function will initailize the grid
-        		for (let row = 0; row < totalRows; row++) {
-        			gridItems[row] = [];
+        	function initializeGrid() { // This function initializes a grid of individuals squares
+        		for (let row = 0; row < totalRows; row++) { // A loop that runs for the equivilent amount of rows  
+        			fullGrid[row] = []; // The grid is refferenced as a 2D array, so this allows for index row to be an array
         			for (let col = 0; col < totalColumns; col++) {
-        				const gridItem = document.createElement('div');
-        				gridItem.className = 'grid-item'; // References the grid-item class in the CSS
-        				gridItem.addEventListener('click', handleGridItemClick); 
-        				gridItems[row][col] = gridItem;
-        				gridContainer.appendChild(gridItem);
+        				const gridItem = document.createElement('div'); // Initalizes the gridItem variable to create a div element
+        				gridItem.className = 'grid-item'; // Assigns gridItem the grid-item CSS class
+        				gridItem.addEventListener('click', handleGridItemClick); // Assigning gridItem an event listner, upon that event, JS will run the handleGridItemClick function
+        				fullGrid[row][col] = gridItem; // Assigns [row][col] to gridItem object this allows JS to reference the gridItem
+        				gridContainer.appendChild(gridItem); // This adds gridItem visually to the DOM
         			}
         		}
         	}
@@ -40,7 +39,7 @@
         	function lightUpRandomSquare() {
         		const randomRow = getRandomNumber(totalRows);
         		const randomCol = getRandomNumber(totalColumns);
-        		const gridItem = gridItems[randomRow][randomCol];
+        		const gridItem = fullGrid[randomRow][randomCol];
         		gridItem.classList.add('active');
         		gridItem.clicked = false;
         		setTimeout(() => {
@@ -92,3 +91,5 @@
 
         window.startGame = startGame;
         window.stopGame = stopGame;
+
+
